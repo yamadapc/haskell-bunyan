@@ -4,7 +4,7 @@ haskell-bunyan
 
 ## Usage
 ```haskell
-import System.Log.FastLogger
+import System.Log.Bunyan
 
 main :: IO ()
 main = do
