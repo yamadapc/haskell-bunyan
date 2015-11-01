@@ -30,6 +30,8 @@ import           System.Log.FastLogger
 import           System.Posix          (ProcessID, getProcessID)
 import           System.Posix.Types    (CPid (..))
 
+-- |
+-- Creates a new logger
 newLogger :: Logger -> IO Logger
 newLogger logger = do
     set <- newStdoutLoggerSet defaultBufSize
@@ -40,6 +42,8 @@ newLogger logger = do
                     , loggerHostname = hostname
                     }
 
+-- |
+-- The logger data type
 data Logger = Logger { loggerPushLn   :: LogStr -> IO ()
                      , loggerName     :: String
                      , loggerPid      :: ProcessID
@@ -56,6 +60,8 @@ instance Default Logger where
                  , loggerVersion = 0
                  }
 
+-- |
+-- The logger data type
 llog :: Logger -> Level -> [Pair] -> Text -> IO ()
 llog logger level ps msg = do
     tm <- formatISO8601Millis <$> getCurrentTime
